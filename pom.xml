@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- @see https://maven.apache.org/pom.html -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -9,16 +10,40 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>irc4chessbase</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://prod.e-campus.cpe.fr/course/view.php?id=2255</url>
+
+  <organization>
+    <name>CPE Lyon</name>
+    <url>http://cpe.fr</url>
+  </organization>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <!--+
+        !   JavaFX, GUI
+        !-->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>11</version>
+    </dependency>
+    <!--+
+        !   Apache Commons - Lang
+        !     mainly used here for introspection tooling
+        !-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.12.0</version>
+    </dependency>
+    <!--+
+        !   JUnit, for unit tests
+        +-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -69,6 +94,22 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+      
+        <!--+
+            !   Maven tooling for launching JavaFX project
+            !     (seems required by NetBeans)
+            !   Usage: mvn javafx:run 
+            !
+            +-->
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <mainClass>launcher.Launcher</mainClass>
+            </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
