@@ -27,7 +27,7 @@ public class Tour extends AbstractPiece {
 		int yFinal = 8 - finalCoord.getLigne();
 		boolean ret = false;
 		
-		if ((yFinal == this.getY()) || (xFinal == this.getX())) {
+		if ((yFinal == this.getY()) || (xFinal == this.getX())) { // FIXME use XOR (^)
 			ret = true;
 		}
 		return ret;
