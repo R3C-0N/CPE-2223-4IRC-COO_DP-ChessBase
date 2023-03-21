@@ -13,9 +13,9 @@ import shared.PieceSquareColor;
  * @author francoise.perrin - Alain BECKER
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
- * G�re le comportement commun � toutes les pi�ces
- * Chaque classe d�riv�e (Pion, etc.) sera capable de dire 
- * si le d�placement est OK.
+ * Gère le comportement commun à toutes les pièces
+ * Chaque classe dérivée (Pion, etc.) sera capable de dire 
+ * si le déplacement est OK.
  * 
  * 
  * 

@@ -13,7 +13,7 @@ import tools.introspection.Introspection;
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
  * Classe qui fabrique une liste de pieces de jeu d'echec
- * de la couleur pass�e en param�tre
+ * de la couleur passée en paramètre
  *
  */
 public class PieceModelFactory {
@@ -62,7 +62,7 @@ public class PieceModelFactory {
 
 	/**
 	 * @param pieceCouleur
-	 * @return liste de pi�ces de jeu d'�chec
+	 * @return liste de pièces de jeu d'échec
 	 */
 	public static List<ChessPieceModel> createPieceModelList(){
 		String className;

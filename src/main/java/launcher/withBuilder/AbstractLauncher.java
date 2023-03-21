@@ -10,8 +10,9 @@ import view.GuiConfig;
 
 /**
  * @author francoise.perrin
+ * 
  * Lance l'execution d'un jeu d'echec en utilisant un Builder
- * pour cr�er les diff�rents �l�ments (model, controller, view, etc.).
+ * pour créer les différents éléments (model, controller, view, etc.).
  * 
  * les éléments de configuration (taille, etc.) sont
  * stockés dans des fabriques
@@ -38,13 +39,13 @@ public abstract class AbstractLauncher extends Application {
 	}
 
 	/**
-	 * @return le Builder n�cessaire qui est diff�rent 
+	 * @return le Builder nécessaire qui est différent 
 	 * selon le mode de jeu (local, client ou server)
 	 */
 	protected abstract ChessBuilder createChessBuilder();
 
 
-	/* La m�thode main() sera d�finie dans les classes d�riv�es */
+	/* La méthode main() sera définie dans les classes dérivées */
 
 	
 	@Override

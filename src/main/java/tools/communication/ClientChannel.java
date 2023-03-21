@@ -76,7 +76,7 @@ public class ClientChannel extends AbstractChannel implements Runnable{
 			this.sender.write(message);
 
 		} catch (IOException e) {
-			System.err.println("Erreur lors de l'ecriture de donn�es "+e.getMessage());
+			System.err.println("Erreur lors de l'ecriture de données "+e.getMessage());
 		}
 	}
 }

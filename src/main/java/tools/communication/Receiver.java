@@ -38,7 +38,7 @@ public class Receiver implements Runnable{
 					e.printStackTrace();
 				}
 		} catch (InterruptedException e) {
-			System.err.println("Impossible d'arr�ter le thread de lecteur"+e.getMessage());
+			System.err.println("Impossible d'arréter le thread de lecteur"+e.getMessage());
 		}
 	}
 

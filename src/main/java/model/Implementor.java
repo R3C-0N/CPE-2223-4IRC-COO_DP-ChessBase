@@ -33,8 +33,8 @@ public class Implementor implements ChessImplementor {
 
 
 	/**
-	 * Le constructeur de pieceModelList fait appel � la fabrique 
-	 * qui lui fournit une liste de pi�ces
+	 * Le constructeur de pieceModelList fait appel à la fabrique 
+	 * qui lui fournit une liste de pièces
 	 */
 	public Implementor(){
 

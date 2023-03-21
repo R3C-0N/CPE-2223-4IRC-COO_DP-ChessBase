@@ -27,10 +27,10 @@ import shared.PieceSquareColor;
 /**
  * @author francoise.perrin
  *
- * cette classe implÃ©mente le damier de la view
- * elle a 2 responsabilitÃ©s :
- * elle gÃ©re les affichages
- * elle invoque les mÃ©thodes du controler Ã  travers ses Ã©couteurs
+ * cette classe implémente le damier de la view
+ * elle a 2 responsabilités :
+ * elle gère les affichages
+ * elle invoque les méthodes du controler à travers ses écouteurs
  *  
  * 
  */
@@ -46,7 +46,7 @@ class GridView extends GridPane implements ChessView{
 
 	/**
 	 * le constructeur construit les cases noires et blanches
-	 * et positionne les images de piÃ¨ces dessus
+	 * et positionne les images de pièces dessus
 	 * @param chessController 
 	 * 
 	 */
@@ -58,14 +58,14 @@ class GridView extends GridPane implements ChessView{
 		nbLig = nbLigne.get();
 		nbCol = nbColonne.get();
 
-		// Les clics droits de souris sont Ã©coutÃ©s pour changer le mode de jeu
+		// Les clics droits de souris sont écoutés pour changer le mode de jeu
 		// Normal ou Tempete
 		this.addBoardListener();
 
 		
 		//////////////////////////////////////////////////////////////////////////////
 		//
-		// Mise en forme du quadrillage et ajout des piÃ¨ces sur le damier
+		// Mise en forme du quadrillage et ajout des pièces sur le damier
 		//
 		//////////////////////////////////////////////////////////////////////////////
 
@@ -75,31 +75,31 @@ class GridView extends GridPane implements ChessView{
 		for (int ligne = 0; ligne<nbLig; ligne++){
 			for (int col = 0; col<nbCol; col++) {
 				
-				// CrÃ©ation du ChessSquareGui par la fabrique qui dÃ©cide de la couleur
-				// en fonction des coordonnÃ©es
+				// Création du ChessSquareGui par la fabrique qui décide de la couleur
+				// en fonction des coordonnées
 				square =   (BorderPane) GuiFactory.createSquare(col, ligne);
 				
-				// ajout du carre sur le damier
+				// ajout du carré sur le damier
 				square.prefWidthProperty().bind(this.widthProperty().divide(nbCol));
 				square.prefHeightProperty().bind(this.heightProperty().divide(nbLigne));
 				this.add(square, col, ligne);
 
-				// ajout Ã©couteurs sur square
+				// ajout écouteurs sur square
 				addSquareListener(square) ;
 
-				// Si une piÃ¨ce doit se trouver sur cette case :
-				// fabrication de la piÃ¨ceGUI
+				// Si une pièce doit se trouver sur cette case :
+				// fabrication de la pieceGUI
 				piece = (ImageView) GuiFactory.createPiece(col, ligne);
 
 
-				// ajout de la piÃ¨ceGUI sur le carre
+				// ajout de la pieceGUI sur le carre
 				if (piece != null) {
 					piece.fitWidthProperty().bind(square.widthProperty().divide(1.5));
 					piece.fitHeightProperty().bind(square.heightProperty().divide(1.1));
 					square.getChildren().add(piece);
 				}
 
-				// ajout Ã©couteurs sur piece
+				// ajout écouteurs sur piece
 				if (piece != null) {
 					addPieceListener(piece);
 				}
@@ -110,7 +110,7 @@ class GridView extends GridPane implements ChessView{
 
 	//////////////////////////////////////////////////////////////////////////////
 	//
-	// Gestion des Ã©vÃ¨nements souris et du drag & drop
+	// Gestion des événements souris et du drag & drop
 	//
 	//////////////////////////////////////////////////////////////////////////////
 
@@ -136,7 +136,7 @@ class GridView extends GridPane implements ChessView{
 		piece.setOnMousePressed(new EventHandler <MouseEvent>() {
 			public void handle(MouseEvent event) {
 
-				// Si la piÃ¨ce sÃ©lectionnÃ©e appartient bien au joueur courant
+				// Si la pièce sélectionnée appartient bien au joueur courant
 				// le controleur demande au damier d'allumer les cases de destinations possibles
 
 				GridView.this.chessController.actionsWhenPieceIsSelectedOnGui(((ChessPieceGui) piece).getCouleur(), ((ChessSquareGui) piece.getParent()).getCoord());
@@ -191,11 +191,11 @@ class GridView extends GridPane implements ChessView{
 				if (db.hasImage()) {
 					success = true;
 
-					// Le controller invoque la mÃ©thode move() du model
-					// si move OK, il deande Ã  la vue de valider le dÃ©placement
-					// sinon de repositionner la piÃ¨ce Ã  ses coordonnÃ©es initiales
+					// Le controller invoque la méthode move() du model
+					// si move OK, il deande à la vue de valider le déplacement
+					// sinon de repositionner la pièce à ses coordonnées initiales
 					chessController.actionsWhenPieceIsMovedOnGui(((ChessSquareGui) square).getCoord());
-					// le controller demande Ã  la vue de rÃ©nitialiser 
+					// le controller demande à la vue de réinitialiser 
 					// les couleurs des cases de destinations possibles
 					chessController.actionsWhenPieceIsReleasedOnGui(((ChessSquareGui) square).getCoord());
 						
@@ -210,7 +210,7 @@ class GridView extends GridPane implements ChessView{
 		square.setOnMouseReleased(new EventHandler <MouseEvent>() {
 			public void handle(MouseEvent event) {
 
-				// le controller demande Ã  la vue de rÃ©nitialiser 
+				// le controller demande à la vue de réinitialiser 
 				// les couleurs des cases de destinations possibles
 				chessController.actionsWhenPieceIsReleasedOnGui(((ChessSquareGui) square).getCoord());
 				
@@ -222,8 +222,8 @@ class GridView extends GridPane implements ChessView{
 
 	//////////////////////////////////////////////////////////////////////////////
 	//
-	// MÃ©thodes invoquÃ©es par le controller aprÃ¨s rÃ©ponse du model
-	// En rÃ©alitÃ©, le controller invoque les mÃ©thodes Ã©ponymes de la classe View
+	// Méthodes invoquées par le controller après réponse du model
+	// En réalité, le controller invoque les méthodes éponymes de la classe View
 	// qui propage l'appel au damier
 	//
 	//////////////////////////////////////////////////////////////////////////////
@@ -245,7 +245,7 @@ class GridView extends GridPane implements ChessView{
 	@Override
 	public void movePiece(GUICoord initCoord, GUICoord targetCoord) {
 		
-		// Suppression piÃ¨ce Ã©ventuelle sur case de destination
+		// Suppression pièce éventuelle sur case de destination
 		BorderPane targetSquare = this.findSquare(targetCoord);;
 		if (targetSquare != null && !targetSquare.getChildren().isEmpty()){
 			int index = targetSquare.getChildren().size()-1;
@@ -254,7 +254,7 @@ class GridView extends GridPane implements ChessView{
 			
 		}
 
-		// Ajout piÃ¨ce dÃ©placÃ©e sur case de destination
+		// Ajout pièce déplacée sur case de destination
 		ImageView pieceToMove = this.findPiece(initCoord);
 		if (pieceToMove != null) { 
 			pieceToMove.setVisible(true);
@@ -283,8 +283,8 @@ class GridView extends GridPane implements ChessView{
 		String[] choices = {"Reine", "Tour", "Fou", "Cavalier"};
 		ChoiceDialog<String> cDial = new ChoiceDialog<>(choices[2], choices);
 		cDial.setTitle("Promotion du pion");
-		cDial.setHeaderText("Veuillez indiquer en quelle piÃ¨ce vous souhaitez promouvoir votre pion");
-		cDial.setContentText("PiÃ¨ce:");
+		cDial.setHeaderText("Veuillez indiquer en quelle pièce vous souhaitez promouvoir votre pion");
+		cDial.setContentText("Pièce:");
 		Optional<String> selection = cDial.showAndWait();
 		promotionType = selection.get();
 
@@ -295,7 +295,7 @@ class GridView extends GridPane implements ChessView{
 	 * @param gUICoord
 	 * @param promotionType
 	 * 
-	 * Supprime la piÃ¨ce du carrÃ©
+	 * Supprime la pièce du carré
 	 * et la remplace par celle du type de la promotion
 	 */
 	@Override

@@ -60,7 +60,7 @@ public interface ChessPieceModel {
 	public ActionType doMove(ModelCoord coord);
 
 	/** 
-	 * @return true si piece effectivement captur�e
+	 * @return true si piece effectivement capturée
 	 * Positionne x et y à -1
 	 */
 	public boolean catchPiece();

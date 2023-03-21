@@ -221,7 +221,7 @@ public class Model implements ChessModel {
 		}
 
 		/////////////////////////////////////////////////////////////////////////////
-		// ArrivÃ© à ce stade, l'action potentielle est MOVE ou TAKE
+		// Arrivé à ce stade, l'action potentielle est MOVE ou TAKE
 		// On vérifie que l'algorithme de déplacement est conforme au type de piece
 		/////////////////////////////////////////////////////////////////////////////
 
@@ -363,7 +363,7 @@ public class Model implements ChessModel {
 			boolean rollbackCapture = this.chessImplementor.undoLastCapture();
 			if(TRACE) {System.out.println("Rollback de la capture " 
 					+ (rollbackCapture ? "" : "non ") 
-					+ "effectuÃ©.");
+					+ "effectué.");
 			}
 			if (!rollbackCapture) { // si ça n'a pas fonctionné...
 				ret = false;
@@ -374,13 +374,13 @@ public class Model implements ChessModel {
 		// Rollback du déplacement
 		boolean rollbackMove = this.chessImplementor.undoLastMove();
 
-		if(TRACE) {System.out.println("Rollback du dÃ©placement " 
+		if(TRACE) {System.out.println("Rollback du déplacement " 
 				+ (rollbackMove ? "" : "non ") 
-				+ "effectuÃ©.");
+				+ "effectué.");
 		}
 		if (!rollbackMove) { // si ça n'a pas fonctionnÃ©...
 			ret = false;
-			throw new IllegalStateException("Chef, y'a un bug !"); // on arrÃªte tout
+			throw new IllegalStateException("Chef, y'a un bug !"); // on arrête tout
 		}
 		return ret;
 	}

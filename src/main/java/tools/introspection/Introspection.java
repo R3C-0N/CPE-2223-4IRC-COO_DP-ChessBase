@@ -13,20 +13,20 @@ import org.apache.commons.lang3.reflect.ConstructorUtils;
 public class Introspection {
 
 	/**
-	 * private pour emp�cher de cr�er des instances de la classe
+	 * private pour empécher de créer des instances de la classe
 	 */
 	private Introspection() {
 
 	}
 
 	/**
-	 * Invocation d'une m�thode connaissant son nom sur un objet o
-	 * en lui passant les bons param�tres
+	 * Invocation d'une méthode connaissant son nom sur un objet o
+	 * en lui passant les bons paramètres
 	 * 
-	 * @param o - l'objet sur lequel agit la m�thode
-	 * @param args - la liste des param�tres de la m�thode
-	 * @param nomMethode - le nom de la m�thode
-	 * @return la m�thode invoqu�e
+	 * @param o - l'objet sur lequel agit la méthode
+	 * @param args - la liste des paramètres de la méthode
+	 * @param nomMethode - le nom de la méthode
+	 * @return la méthode invoquée
 	 * @throws Exception
 	 */
 	public static Object invoke(Object o, Object[] args, String nomMethode ) throws Exception	{
@@ -62,11 +62,11 @@ public class Introspection {
 
 
 	/**
-	 * cr�ation d'un objet connaissant le nom de la classe
-	 * utilise un constructeur sans param�tre
+	 * création d'un objet connaissant le nom de la classe
+	 * utilise un constructeur sans paramètre
 	 * 
 	 * @param className
-	 * @return le nouvel objet cr�e
+	 * @return le nouvel objet créé
 	 */
 	public static Object newInstance(String className) {
 		Object o = null;
@@ -91,11 +91,11 @@ public class Introspection {
 
 
 	/**
-	 * construction � partir du nom de la classe et des param�tres du constructeur
+	 * construction à partir du nom de la classe et des paramètres du constructeur
 	 * 
 	 * @param className
 	 * @param args - la liste des arguments du constructeur
-	 * @return le nouvel objet cr�e
+	 * @return le nouvel objet créé
 	 */
 	public static Object newInstance(String className, final Object... args) {
 		Object o = null;

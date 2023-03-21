@@ -26,7 +26,7 @@ public interface ChessSquareGui   {
 	public void resetColor(boolean isLight) ;
 
 	/**
-	 * Permet de redessiner le carré en cas de changement de couleur
+	 * Permet de redessiner le carrÃ© en cas de changement de couleur
 	 * dans la factory
 	 */
 	public void paint();

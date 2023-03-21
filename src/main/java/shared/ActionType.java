@@ -3,16 +3,16 @@ package shared;
 
 public enum  ActionType { 
 	// ------------------------------------------------------- coups anormaux
-	/** coup non encore Ã©valuÃ© (valeur par dÃ©faut) */
+	/** coup non encore évalué (valeur par défaut) */
 	UNKNOWN,
-	/** coup Ã©valuÃ© comme illÃ©gal */
+	/** coup évalué comme illégal */
 	ILLEGAL,
 	// ------------------------------------------------------- coups normaux
-	/** coup normal de dÃ©placement (sans prise) */
+	/** coup normal de déplacement (sans prise) */
 	MOVE,
 	/** coup normal de prise */
 	TAKE,
-	// ------------------------------------------------------- coup spÃ©ciaux
+	// ------------------------------------------------------- coup spéciaux
 	/** mouvement de roque (tentative) */
 	ROQUE, 
 	/** promotion du pion */
@@ -21,10 +21,10 @@ public enum  ActionType {
 	TAKEPROMOTION, 
 	/** prise en passant du pion */
 	PRISE_EN_PASSANT,
-	// ------------------------------------------------------- coups Ã  refuser
-	/** mouvement lÃ©gal Ã  refuser car aboutirait en un Ã©chec du roi */
+	// ------------------------------------------------------- coups à refuser
+	/** mouvement légal à refuser car aboutirait en un échec du roi */
 	ROI_EN_ECHEC,
-	/** fin de partie - echec et mat ou pat */
+	/** fin de partie - échec et mat ou pat */
 	END
 	; // ----------------------------------------------------- 
 }

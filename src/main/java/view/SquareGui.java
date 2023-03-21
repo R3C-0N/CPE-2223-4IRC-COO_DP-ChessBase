@@ -46,7 +46,7 @@ class SquareGui extends BorderPane implements ChessSquareGui {
 			this.backgroundColor.bind(GuiConfig.whiteSquareColor);
 		}
 
-		// On dessine un carr� 
+		// On dessine un carré
 		this.paint();
 
 	}
@@ -72,7 +72,7 @@ class SquareGui extends BorderPane implements ChessSquareGui {
 	}
 
 	/**
-	 * Permet de redessiner le carr� en cas de changement de couleur
+	 * Permet de redessiner le carré en cas de changement de couleur
 	 * dans la factory
 	 */
 	@Override

@@ -41,7 +41,7 @@ public abstract class AbstractChannel implements CommunicationChannel  {
 			message = this.msgQueue.poll(this.config.getReadWaitTime(), TimeUnit.MILLISECONDS);
 
 		} catch (InterruptedException e) {
-			System.err.println("Erreur lors de la lecture de donn�es "+e.getMessage());
+			System.err.println("Erreur lors de la lecture de données "+e.getMessage());
 		}
 		return message;
 	}
