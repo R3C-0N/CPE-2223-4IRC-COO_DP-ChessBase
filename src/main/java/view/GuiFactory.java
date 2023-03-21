@@ -1,8 +1,6 @@
 package view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -134,19 +132,24 @@ class PieceGUIFactory {
 		return new PieceGui(pieceSquareColor, createImage(promotionType + pieceSquareColor.name()) );
 	}
 
+	/**
+	 * Get image for a given piece type
+	 * @param pieceType
+	 * @return matching image from resources, or {@literal null} if not found
+	 */
 	private static Image createImage(String pieceType) {
 		
 		Image image = null;
 		String pieceImageFile = null, nomImageFile = null;
-		File g=new File("");
 		
 		nomImageFile = mapPieceImage.get(pieceType);
 		
-		pieceImageFile = g.getAbsolutePath()+"/images/" + nomImageFile;	// TODO - attention au chemin
-		try {
-			image = new Image(new FileInputStream(pieceImageFile));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		pieceImageFile = "images/" + nomImageFile; // attention au chemin
+		InputStream imageInputStream = PieceGUIFactory.class.getResourceAsStream(pieceImageFile);
+		if (imageInputStream!=null) {
+			image = new Image(imageInputStream);
+		} else {
+			System.err.printf("Warning: GuiFactory couldn't load image resource at given path \"%s\"\n", pieceImageFile);
 		}
 		return image;
 	}
