@@ -128,7 +128,7 @@
             <artifactId>javafx-maven-plugin</artifactId>
             <version>0.0.8</version>
             <configuration>
-                <mainClass>launcher.Launcher</mainClass>
+                <mainClass>launcher.localLauncher.LocalLauncherEleve</mainClass>
             </configuration>
         </plugin>
 
