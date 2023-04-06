@@ -49,8 +49,6 @@ class SquareGui extends BorderPane implements ChessSquareGui {
 		}
 
 
-		/* ----------------------------------------- Version On écris tout ----------------------------------------- */
-
 		ChangeListener<Color> paintColorListener = new ChangeListener<Color>() {
 			@Override
 			public void changed(ObservableValue<? extends Color> observable, Color oldValue, Color newValue) {
@@ -67,32 +65,6 @@ class SquareGui extends BorderPane implements ChessSquareGui {
 		ObservableValue<Color> paintColorObservable = backgroundColor;
 		paintStyleObservable.addListener(paintStyleListener);
 		paintColorObservable.addListener(paintColorListener);
-
-
-
-		/* -------------------------------- Version On utilise un listener générique -------------------------------- */
-
-		ChangeListener<?> paintListener = new ChangeListener<>() {
-			@Override
-			public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-				paint();
-			}
-		};
-		paintStyleObservable.addListener((ChangeListener<? super PaintStyle>) paintListener);
-		paintColorObservable.addListener((ChangeListener<? super Color>) paintListener);
-
-
-
-		/* ------------------- Version On utilise un listener sous la form d'une fonction lambda ------------------- */
-
-		paintStyleObservable.addListener(observableValue -> paint());
-		paintColorObservable.addListener(observableValue -> paint());
-
-
-		/* -------------------- Version On ne redéfinit pas de variable de type ObservableValue -------------------- */
-
-		GuiConfig.paintStyle.addListener(observableValue -> paint());
-		backgroundColor.addListener(observableValue -> paint());
 
 		// On dessine un carré
 		this.paint();
