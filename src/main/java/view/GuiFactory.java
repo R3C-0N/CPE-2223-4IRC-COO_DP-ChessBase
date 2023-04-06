@@ -10,6 +10,7 @@ import java.util.Set;
 import javafx.scene.image.Image;
 import shared.GUICoord;
 import shared.PieceSquareColor;
+import view.decorator.SquareGuiDecorator;
 
 /**
  * @author francoise.perrin
@@ -30,10 +31,10 @@ public class GuiFactory {
 		GUICoord gUICoord = new GUICoord(col, ligne);
 		
 		/* Version sans Decorator avec ou sans Observer  */
-		square = new SquareGui(gUICoord, squareColor);
+//		square = new SquareGui(gUICoord, squareColor);
 		
 		/* Version avec Decorator et Observer */
-//		square = new SquareGuiDecorator(new SquareGui(gUICoord, squareColor)); 
+		square = new SquareGuiDecorator(new SquareGui(gUICoord, squareColor));
 
 		return square;
 	}

@@ -2,8 +2,6 @@ package view;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -47,24 +45,6 @@ class SquareGui extends BorderPane implements ChessSquareGui {
 		else {
 			this.backgroundColor.bind(GuiConfig.whiteSquareColor);
 		}
-
-
-		ChangeListener<Color> paintColorListener = new ChangeListener<Color>() {
-			@Override
-			public void changed(ObservableValue<? extends Color> observable, Color oldValue, Color newValue) {
-				paint();
-			}
-		};
-		ChangeListener<PaintStyle> paintStyleListener = new ChangeListener<PaintStyle>() {
-			@Override
-			public void changed(ObservableValue<? extends PaintStyle> observable, PaintStyle oldValue, PaintStyle newValue) {
-				paint();
-			}
-		};
-		ObservableValue<PaintStyle> paintStyleObservable = GuiConfig.paintStyle;
-		ObservableValue<Color> paintColorObservable = backgroundColor;
-		paintStyleObservable.addListener(paintStyleListener);
-		paintColorObservable.addListener(paintColorListener);
 
 		// On dessine un carré
 		this.paint();
