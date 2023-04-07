@@ -14,9 +14,13 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
-import view.GuiConfig;
-import view.PaintStyle;
-
+import view.command.commands.Command;
+import view.command.concreteCommands.ColorBlackCommand;
+import view.command.concreteCommands.ColorWhiteCommand;
+import view.command.concreteCommands.ResetCommand;
+import view.command.concreteCommands.StyleCommand;
+import view.command.invokers.Invoker;
+import view.command.invokers.concreteInvokers.ReplayInvoker;
 
 /**
  * @author francoise.perrin
@@ -24,133 +28,148 @@ import view.PaintStyle;
  */
 public class MenuView extends MenuBar {
 
-	public MenuView () {
-		super();
+    private final Invoker<Command> invoker;
 
-		this.getMenus().add(newMenuStyle());
-		this.getMenus().add(newMenuColor());
-		this.getMenus().add(newMenuEdit());
-	}
+    public MenuView() {
+        super();
 
-	private Menu newMenuColor () {
+        invoker = new ReplayInvoker<>(new ResetCommand());
 
-		Menu menu = new Menu("Couleur d'affichage");
-		MenuItem color1 = new MenuItem("Couleur cases blanches");
-		MenuItem color2 = new MenuItem("Couleur cases noires");
+        this.getMenus().add(newMenuStyle());
+        this.getMenus().add(newMenuColor());
+        this.getMenus().add(newMenuEdit());
+    }
 
-		color1.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-				Dialog<Void> colorDialog = new Dialog<>();
-				colorDialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+    private Menu newMenuColor() {
 
-				ColorPicker colorPicker = new ColorPicker(GuiConfig.whiteSquareColor.get());
-				colorPicker.setOnAction(colorEvent -> {
-										/* sans pattern Command */
-										GuiConfig.whiteSquareColor.set(colorPicker.getValue());
+        Menu menu = new Menu("Couleur d'affichage");
+        MenuItem color1 = new MenuItem("Couleur cases blanches");
+        MenuItem color2 = new MenuItem("Couleur cases noires");
 
-					
-					colorDialog.close();
-				});
+        color1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dialog<Void> colorDialog = new Dialog<>();
+                colorDialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-				colorDialog.getDialogPane().setContent(colorPicker);
-				colorDialog.show();
-			}
-		});
+                ColorPicker colorPicker = new ColorPicker(GuiConfig.whiteSquareColor.get());
+                colorPicker.setOnAction(colorEvent -> {
+                    /* sans pattern Command */
+//                    GuiConfig.whiteSquareColor.set(colorPicker.getValue());
 
-		color2.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-				Dialog<Void> colorDialog = new Dialog<>();
-				colorDialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+                    /* avec pattern Command */
+                    Command command = new ColorWhiteCommand(colorPicker.getValue());
+                    invoker.exec(command);
 
-				ColorPicker colorPicker = new ColorPicker(GuiConfig.blackSquareColor.get());
-				colorPicker.setOnAction(colorEvent -> {
-										/* sans pattern Command */
-										GuiConfig.blackSquareColor.set(colorPicker.getValue());
+                    colorDialog.close();
+                });
 
-					
-					colorDialog.close();
-				});
+                colorDialog.getDialogPane().setContent(colorPicker);
+                colorDialog.show();
+            }
+        });
 
-				colorDialog.getDialogPane().setContent(colorPicker);
-				colorDialog.show();
-			}
-		});
+        color2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Dialog<Void> colorDialog = new Dialog<>();
+                colorDialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-		menu.getItems().addAll(color1, color2);
-		return menu;
-	}
+                ColorPicker colorPicker = new ColorPicker(GuiConfig.blackSquareColor.get());
 
-	private Menu newMenuStyle () {
+                colorPicker.setOnAction(colorEvent -> {
+                    /* sans pattern Command */
+//                    GuiConfig.blackSquareColor.set(colorPicker.getValue());
 
-		Menu menu = new Menu("Style d'affichage");
-		RadioMenuItem style1 = new RadioMenuItem("Dégradé");
-		RadioMenuItem style2 = new RadioMenuItem("Uni");
-		ToggleGroup btnGroup = new ToggleGroup();
+                    /* avec pattern Command */
+                    Command command = new ColorBlackCommand(colorPicker.getValue());
+                    invoker.exec(command);
 
-		style1.setToggleGroup(btnGroup);
-		style2.setToggleGroup(btnGroup);
+                    colorDialog.close();
+                });
 
-		Map<MenuItem, PaintStyle> btnMap = new HashMap<>();
-		btnMap.put(style1, PaintStyle.GRADIENT);
-		btnMap.put(style2, PaintStyle.SOLID);
+                colorDialog.getDialogPane().setContent(colorPicker);
+                colorDialog.show();
+            }
+        });
 
-		Object style = GuiConfig.paintStyle.get();
-		btnMap.forEach((menuItem, paintstyle) -> {
-			if (paintstyle.equals(style)) {
-				((RadioMenuItem) menuItem).setSelected(true);
-			}
-		});
+        menu.getItems().addAll(color1, color2);
+        return menu;
+    }
+
+    private Menu newMenuStyle() {
+
+        Menu menu = new Menu("Style d'affichage");
+        RadioMenuItem style1 = new RadioMenuItem("Dégradé");
+        RadioMenuItem style2 = new RadioMenuItem("Uni");
+        ToggleGroup btnGroup = new ToggleGroup();
+
+        style1.setToggleGroup(btnGroup);
+        style2.setToggleGroup(btnGroup);
+
+        Map<MenuItem, PaintStyle> btnMap = new HashMap<>();
+        btnMap.put(style1, PaintStyle.GRADIENT);
+        btnMap.put(style2, PaintStyle.SOLID);
+
+        Object style = GuiConfig.paintStyle.get();
+        btnMap.forEach((menuItem, paintstyle) -> {
+            if (paintstyle.equals(style)) {
+                ((RadioMenuItem) menuItem).setSelected(true);
+            }
+        });
 
 
-		style1.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-								 /* sans pattern Command */
-								GuiConfig.paintStyle.set(PaintStyle.GRADIENT);			
+        style1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                /* sans pattern Command */
+//                GuiConfig.paintStyle.set(PaintStyle.GRADIENT);
 
-				
-			}
-		});
+                /* avec DP Command */
+                Command command = new StyleCommand(PaintStyle.GRADIENT);
+                invoker.exec(command);
+            }
+        });
 
-		style2.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-								 /* sans pattern Command */
-								GuiConfig.paintStyle.set(PaintStyle.SOLID);			
+        style2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                /* sans pattern Command */
+//                GuiConfig.paintStyle.set(PaintStyle.SOLID);
 
-				
-			}
-		});
+                /* avec DP Command */
+                Command command = new StyleCommand(PaintStyle.SOLID);
+                invoker.exec(command);
+            }
+        });
 
-		menu.getItems().addAll(style1, style2);
-		return menu;
-	}
+        menu.getItems().addAll(style1, style2);
+        return menu;
+    }
 
-	private Menu newMenuEdit () {
+    private Menu newMenuEdit() {
 
-		Menu menu = new Menu("Gestion Commandes");
-		MenuItem undo = new MenuItem("undo");
-		MenuItem redo = new MenuItem("redo");
+        Menu menu = new Menu("Gestion Commandes");
+        MenuItem undo = new MenuItem("undo");
+        MenuItem redo = new MenuItem("redo");
 
-		undo.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-				// TODO
-			}
-		});
+        undo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                invoker.undo();
+            }
+        });
 
-		redo.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle (ActionEvent event) {
-				// TODO
-			}
-		});
+        redo.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                invoker.redo();
+            }
+        });
 
-		menu.getItems().addAll(undo, redo);
-		return menu;
-	}
+        menu.getItems().addAll(undo, redo);
+        return menu;
+    }
 
 
 }
