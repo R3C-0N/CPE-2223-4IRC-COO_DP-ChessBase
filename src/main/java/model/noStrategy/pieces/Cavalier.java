@@ -1,11 +1,10 @@
 package model.noStrategy.pieces;
 
-import java.util.Collections;
-import java.util.List;
-
-import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.Collections;
+import java.util.List;
 
 
 
@@ -22,23 +21,6 @@ public class Cavalier extends AbstractPiece  {
 	 */
 	public Cavalier( PieceSquareColor pieceSquareColor, ModelCoord coord) {
 		super(pieceSquareColor, coord);
-	}
-	
-	@Override
-	public boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType actionType) {
-	
-		boolean ret = false;
-		int xFinal = finalCoord.getCol() -'a';
-		int yFinal = 8 - finalCoord.getLigne();
-		
-		if ((Math.abs(xFinal - this.getX()) + Math.abs(yFinal - this.getY())) == 3) {
-			
-			if ((Math.abs(xFinal - this.getX())<3) && (Math.abs(yFinal - this.getY())<3)) {
-				ret  = true;
-			}		
-		}	
-		
-		return ret;
 	}
 
 	/* (non-Javadoc)

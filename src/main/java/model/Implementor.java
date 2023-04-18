@@ -1,17 +1,16 @@
 package model;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
 import model.noStrategy.pieces.ChessPieceModel;
 import model.noStrategy.pieces.Roi;
-
+import model.strategy.factory.concrete.ModelFactory;
 import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author francoise.perrin - Alain BECKER

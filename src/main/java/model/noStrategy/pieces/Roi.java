@@ -1,11 +1,11 @@
 package model.noStrategy.pieces;
 
-import java.util.Collections;
-import java.util.List;
-
-import shared.ActionType;
+import model.strategy.movementStrategy.concreteMovementStrategy.RoiMovementStrategy;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -24,24 +24,6 @@ public class Roi extends AbstractPiece {
 		super(pieceSquareColor, coord);
 		
 	//	this.isCastling = false;
-	}
-
-	@Override
-	public boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType actionType) {
-		int xFinal = finalCoord.getCol() -'a';
-		int yFinal = 8 - finalCoord.getLigne();
-		boolean ret = false;
-		
-		// cas général
-		if ((Math.abs(yFinal - this.getY()) <= 1)
-				&& (Math.abs(xFinal - this.getX()) <= 1)) {
-			ret = true;
-		}
-		
-		// Cas du roque
-		// TODO : implémenter
-		
-		return ret;
 	}
 	
 	@Override

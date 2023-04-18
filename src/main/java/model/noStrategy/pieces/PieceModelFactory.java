@@ -1,12 +1,12 @@
 package model.noStrategy.pieces;
 
 
-import java.util.LinkedList;
-import java.util.List;
-
 import shared.ModelCoord;
 import shared.PieceSquareColor;
 import tools.introspection.Introspection;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author francoise.perrin
@@ -33,20 +33,20 @@ public class PieceModelFactory {
 		FOUBLANC("Fou", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('c',1), new ModelCoord('f',1)}), 
 		REINEBLANC("Reine", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('d',1)}), 
 		ROIBLANC("Roi", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('e',1)}),
-		PIONBLANC("Pion", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('a',2), new ModelCoord('b',2), new ModelCoord('c',2), new ModelCoord('d',2),
-				new ModelCoord('e',2), new ModelCoord('f',2), new ModelCoord('g',2), new ModelCoord('h',2)}),
-//		PIONBLANC("PionBlanc", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('a',2), new ModelCoord('b',2), new ModelCoord('c',2), new ModelCoord('d',2),
+//		PIONBLANC("Pion", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('a',2), new ModelCoord('b',2), new ModelCoord('c',2), new ModelCoord('d',2),
 //				new ModelCoord('e',2), new ModelCoord('f',2), new ModelCoord('g',2), new ModelCoord('h',2)}),
+		PIONBLANC("PionBlanc", PieceSquareColor.WHITE, new ModelCoord[] {new ModelCoord('a',2), new ModelCoord('b',2), new ModelCoord('c',2), new ModelCoord('d',2),
+				new ModelCoord('e',2), new ModelCoord('f',2), new ModelCoord('g',2), new ModelCoord('h',2)}),
 		
 		TOURNOIR("Tour", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('a',8), new ModelCoord('h',8)}),
 		CAVALIERNOIR("Cavalier", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('b',8), new ModelCoord('g',8)}), 
 		FOUNOIR("Fou", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('c',8), new ModelCoord('f',8)}), 
 		REINENOIR("Reine", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('d',8)}), 
 		ROINOIR("Roi", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('e',8)}),
-		PIONNOIR("Pion", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('a',7), new ModelCoord('b',7), new ModelCoord('c',7), new ModelCoord('d',7),
-				new ModelCoord('e',7), new ModelCoord('f',7), new ModelCoord('g',7), new ModelCoord('h',7)})  
-//		PIONNOIR("PionNoir", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('a',7), new ModelCoord('b',7), new ModelCoord('c',7), new ModelCoord('d',7),
-//				new ModelCoord('e',7), new ModelCoord('f',7), new ModelCoord('g',7), new ModelCoord('h',7)})  
+//		PIONNOIR("Pion", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('a',7), new ModelCoord('b',7), new ModelCoord('c',7), new ModelCoord('d',7),
+//				new ModelCoord('e',7), new ModelCoord('f',7), new ModelCoord('g',7), new ModelCoord('h',7)})
+		PIONNOIR("PionNoir", PieceSquareColor.BLACK, new ModelCoord[] {new ModelCoord('a',7), new ModelCoord('b',7), new ModelCoord('c',7), new ModelCoord('d',7),
+				new ModelCoord('e',7), new ModelCoord('f',7), new ModelCoord('g',7), new ModelCoord('h',7)})
 		; 
 
 		public String nom;
@@ -61,7 +61,6 @@ public class PieceModelFactory {
 	}
 
 	/**
-	 * @param pieceCouleur
 	 * @return liste de pièces de jeu d'échec
 	 */
 	public static List<ChessPieceModel> createPieceModelList(){

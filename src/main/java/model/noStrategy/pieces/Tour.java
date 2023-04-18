@@ -1,12 +1,12 @@
 package model.noStrategy.pieces;
 
+import model.strategy.movementStrategy.concreteMovementStrategy.TourMovementStrategy;
+import shared.ModelCoord;
+import shared.PieceSquareColor;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-
-import shared.ActionType;
-import shared.ModelCoord;
-import shared.PieceSquareColor;
 
 /**
  * @author francoise.perrin - Alain BECKER
@@ -19,18 +19,6 @@ public class Tour extends AbstractPiece {
 	 */
 	public Tour(PieceSquareColor pieceSquareColor, ModelCoord coord) {
 		super(pieceSquareColor, coord);
-	}
-	
-	@Override
-	public boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType actionType) {
-		int xFinal = finalCoord.getCol() -'a';
-		int yFinal = 8 - finalCoord.getLigne();
-		boolean ret = false;
-		
-		if ((yFinal == this.getY()) || (xFinal == this.getX())) { // FIXME use XOR (^)
-			ret = true;
-		}
-		return ret;
 	}
 
 	@Override

@@ -1,26 +1,21 @@
 package view;
 
 
-import java.util.List;
-import java.util.Optional;
-
 import controller.ChessController;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import shared.GUICoord;
 import shared.GameMode;
 import shared.PieceSquareColor;
+
+import java.util.List;
+import java.util.Optional;
 
 
 

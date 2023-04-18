@@ -7,7 +7,7 @@ import controller.AbstractController;
 import controller.ChessControllerModel;
 import controller.ChessControllerView;
 import model.ChessModel;
-import model.ModelFactory;
+import model.strategy.factory.concrete.ModelFactory;
 import shared.ActionType;
 import shared.GUICoord;
 import shared.GameMode;

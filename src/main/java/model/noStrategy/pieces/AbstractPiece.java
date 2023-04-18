@@ -1,11 +1,16 @@
 package model.noStrategy.pieces;
 
-import java.util.List;
-
-import model.ModelFactory;
+import model.strategy.adapter.ChessPieceAdapter;
+import model.strategy.adapter.IChessPieceAdaptor;
+import model.strategy.factory.astract.MovementStrategyFactory;
+import model.strategy.factory.concrete.ModelFactory;
+import model.strategy.factory.concrete.TempestMovementStategyFactory;
+import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy;
 import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.List;
 
 
 
@@ -46,7 +51,7 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 
 
 	/**
-	 * @param pieceColor
+	 * @param pieceSquareColor
 	 * @param coord
 	 */
 	public AbstractPiece(PieceSquareColor pieceSquareColor, ModelCoord coord){
@@ -69,7 +74,7 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 	public boolean hasThisColor(PieceSquareColor pieceColor) {
 		return this.pieceColor == pieceColor;
 	}
-	
+
 	@Override
 	public char getCol() {
 		return (char)(this.x + 'a');
@@ -80,12 +85,12 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 		return this.y - 8;
 	}
 
-	
+
 	@Override
 	public String getName() {
 		return getClass().getSimpleName();
 	}
-	
+
 	@Override
 	public boolean hasMoved() {
 		return this.hasMoved;
@@ -95,13 +100,13 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 	public ActionType doMove (ModelCoord coord){
 		ActionType isMoveOk = ActionType.UNKNOWN;
 
-		if(ModelFactory.coordonnees_valides(coord)){	// vérifie aussi que coord != null
+		if(ModelFactory.coordonnees_valides(coord)){    // vérifie aussi que coord != null
 			this.xBeforeMove = this.x;
 			this.yBeforeMove = this.y; // Mémorisation pour undoLastMove()
 			this.x = coord.getCol() - 'a';
 			this.y = 8 - coord.getLigne();
 			isMoveOk = ActionType.MOVE;
-			
+
 			this.hasMovedBeforeMove = this.hasMoved;
 			this.hasMoved = true;
 		}
@@ -147,14 +152,31 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 	}
 
 	@Override
-	public String toString(){	
-		String S = (this.getClass().getSimpleName()).substring(0, 2) 
+	public String toString(){
+		String S = (this.getClass().getSimpleName()).substring(0, 2)
 				+ " " + (char)(this.x+'a') + " " + (8-this.y);
 		return S;
 	}
 
 	@Override
-	public abstract boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType type);
+	public boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType type){
+		boolean ret = false;
+
+		IChessPieceAdaptor chessPieceAdapter = new ChessPieceAdapter(this);
+//		MovementStrategyFactory movementStrategyFactory = ClassicMovementStategyFactory.getInstance();
+		MovementStrategyFactory movementStrategyFactory = TempestMovementStategyFactory.getInstance();
+		MovementStrategy movementStrategy = movementStrategyFactory.createMovementStrategy(chessPieceAdapter);
+		ret = movementStrategy.isMoveOk(
+				this.getX(),
+				this.getY(),
+				finalCoord.getCol() - 'a',
+				8 - finalCoord.getLigne(),
+				this.hasMoved, type
+		);
+
+
+		return ret;
+	}
 
 	@Override
 	public abstract List<ModelCoord> getMoveItinerary(ModelCoord finalCoord);

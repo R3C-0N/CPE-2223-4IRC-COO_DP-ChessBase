@@ -1,20 +1,16 @@
-package model;
-
-import java.util.List;
+package model.strategy.factory.concrete;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-
-
 import model.noStrategy.pieces.ChessPieceModel;
 import model.noStrategy.pieces.PieceModelFactory;
-
-
 import shared.GameMode;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.List;
 
 public class ModelFactory {
 
@@ -50,8 +46,6 @@ public class ModelFactory {
 	///////////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * @param x
-	 * @param y
 	 * @return true si les coordonnées passées en paramètre sont dans les limites du
 	 *         plateau
 	 */

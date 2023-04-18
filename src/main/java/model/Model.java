@@ -1,12 +1,12 @@
 package model;
 
-import java.util.LinkedList;
-import java.util.List;
-
-
+import model.strategy.factory.concrete.ModelFactory;
 import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**

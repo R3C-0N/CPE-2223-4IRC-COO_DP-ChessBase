@@ -1,19 +1,9 @@
 package view;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import view.command.commands.Command;
 import view.command.concreteCommands.ColorBlackCommand;
 import view.command.concreteCommands.ColorWhiteCommand;
@@ -21,6 +11,9 @@ import view.command.concreteCommands.ResetCommand;
 import view.command.concreteCommands.StyleCommand;
 import view.command.invokers.Invoker;
 import view.command.invokers.concreteInvokers.ReplayInvoker;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author francoise.perrin

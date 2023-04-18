@@ -1,4 +1,4 @@
-package model.strategy.movementStrategy;
+package model.strategy.movementStrategy.abstractMovementStrategy;
 
 import shared.ActionType;
 
