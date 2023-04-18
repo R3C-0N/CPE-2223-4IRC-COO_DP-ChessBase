@@ -3,10 +3,12 @@ package model.noStrategy.pieces;
 import model.strategy.adapter.ChessPieceAdapter;
 import model.strategy.adapter.IChessPieceAdaptor;
 import model.strategy.factory.astract.MovementStrategyFactory;
+import model.strategy.factory.concrete.ClassicMovementStategyFactory;
 import model.strategy.factory.concrete.ModelFactory;
 import model.strategy.factory.concrete.TempestMovementStategyFactory;
 import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy;
 import shared.ActionType;
+import shared.GameMode;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
 
@@ -163,8 +165,12 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 		boolean ret = false;
 
 		IChessPieceAdaptor chessPieceAdapter = new ChessPieceAdapter(this);
-//		MovementStrategyFactory movementStrategyFactory = ClassicMovementStategyFactory.getInstance();
-		MovementStrategyFactory movementStrategyFactory = TempestMovementStategyFactory.getInstance();
+		MovementStrategyFactory movementStrategyFactory;
+		if(ModelFactory.gameMode.get() == GameMode.NORMAL){
+			movementStrategyFactory = ClassicMovementStategyFactory.getInstance();
+		} else {
+			movementStrategyFactory = TempestMovementStategyFactory.getInstance();
+		}
 		MovementStrategy movementStrategy = movementStrategyFactory.createMovementStrategy(chessPieceAdapter);
 		ret = movementStrategy.isMoveOk(
 				this.getX(),

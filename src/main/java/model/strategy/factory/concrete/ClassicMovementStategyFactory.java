@@ -8,7 +8,7 @@ import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy
 public class ClassicMovementStategyFactory extends AbstractMovementStrategyFactory implements MovementStrategyFactory {
 
     public static MovementStrategyFactory getInstance() {
-        if (instance == null)
+        if (!(instance instanceof ClassicMovementStategyFactory))
             instance = new ClassicMovementStategyFactory();
         return instance;
     }

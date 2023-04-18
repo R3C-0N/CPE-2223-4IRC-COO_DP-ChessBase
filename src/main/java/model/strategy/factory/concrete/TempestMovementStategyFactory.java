@@ -22,7 +22,7 @@ public class TempestMovementStategyFactory extends AbstractMovementStrategyFacto
     }
 
     public static MovementStrategyFactory getInstance() {
-        if (instance == null) {
+        if (!(instance instanceof TempestMovementStategyFactory)) {
             TempestMovementStategyFactory factory = new TempestMovementStategyFactory();
             factory.initPositionStrategy();
             instance = factory;
