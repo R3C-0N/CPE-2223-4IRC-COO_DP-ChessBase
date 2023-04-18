@@ -1,8 +1,6 @@
-package model.noStrategy.pieces;
+package model.pieces;
 
 import model.strategy.factory.concrete.ModelFactory;
-import model.strategy.movementStrategy.concreteMovementStrategy.PionBlancMovementStrategy;
-import model.strategy.movementStrategy.concreteMovementStrategy.PionNoirMovementStrategy;
 import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
@@ -12,18 +10,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-
 /**
  * @author francoise.perrin - Alain BECKER
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD*
  */
-public class PionNoir extends  AbstractPiece  {
-	
+public class PionBlanc extends  AbstractPiece  {
+
 	/**
 	 * @param couleur
 	 * @param coord
 	 */
-	public PionNoir(PieceSquareColor couleur, ModelCoord coord) {
+	public PionBlanc(PieceSquareColor couleur, ModelCoord coord) {
 		super(couleur, coord);
 
 	}

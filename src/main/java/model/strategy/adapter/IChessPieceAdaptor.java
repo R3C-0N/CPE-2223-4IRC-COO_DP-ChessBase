@@ -1,7 +1,8 @@
 package model.strategy.adapter;
 
-public interface IChessPieceAdaptor {
+import model.pieces.ChessPieceModel;
 
+public interface IChessPieceAdaptor {
 
     public String getPieceName();
 

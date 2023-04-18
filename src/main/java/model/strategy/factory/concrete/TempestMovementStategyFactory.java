@@ -9,31 +9,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TempestMovementStategyFactory extends AbstractMovementStrategyFactory implements MovementStrategyFactory {
-    protected Map<Integer, String> positionStrategy;
+    protected Map<Integer, String> positionRole;
 
-    public void initPositionStrategy() {
-        this.positionStrategy = new HashMap<>();
-        this.positionStrategy.put(0, "Tour");
-        this.positionStrategy.put(1, "Cavalier");
-        this.positionStrategy.put(2, "Fou");
-        this.positionStrategy.put(5, "Fou");
-        this.positionStrategy.put(6, "Cavalier");
-        this.positionStrategy.put(7, "Tour");
+    private void initPositionRole() {
+        this.positionRole = new HashMap<>();
+        this.positionRole.put(0, "Tour");
+        this.positionRole.put(1, "Cavalier");
+        this.positionRole.put(2, "Fou");
+        this.positionRole.put(5, "Fou");
+        this.positionRole.put(6, "Cavalier");
+        this.positionRole.put(7, "Tour");
     }
 
     public static MovementStrategyFactory getInstance() {
         if (!(instance instanceof TempestMovementStategyFactory)) {
             TempestMovementStategyFactory factory = new TempestMovementStategyFactory();
-            factory.initPositionStrategy();
+            factory.initPositionRole();
             instance = factory;
         }
         return instance;
     }
+
     @Override
     public MovementStrategy createMovementStrategy(IChessPieceAdaptor adapter) {
-        if (this.positionStrategy.containsKey(adapter.getCol()))
-            return TempestMovementStategyFactory.getStrategies().get(this.positionStrategy.get(adapter.getCol()));
-
+        if (this.positionRole.containsKey(adapter.getCol()))
+            return TempestMovementStategyFactory.getStrategies().get(this.positionRole.get(adapter.getCol()));
         return TempestMovementStategyFactory.getStrategies().get(adapter.getPieceName());
     }
 }

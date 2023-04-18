@@ -14,7 +14,7 @@ module irc4chessbase {
 
     exports launcher.localLauncher to javafx.graphics;
     exports launcher.withBuilder.local to javafx.graphics;
-    exports model.noStrategy.pieces to org.apache.commons.lang3;
+    exports model.pieces to org.apache.commons.lang3;
     
     
     // requires javafx.base;

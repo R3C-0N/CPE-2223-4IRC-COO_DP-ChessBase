@@ -1,4 +1,4 @@
-package model.noStrategy.pieces;
+package model.pieces;
 
 
 import shared.ModelCoord;

@@ -1,8 +1,8 @@
 package model;
 
 
-import model.noStrategy.pieces.ChessPieceModel;
-import model.noStrategy.pieces.Roi;
+import model.pieces.ChessPieceModel;
+import model.pieces.Roi;
 import model.strategy.factory.concrete.ModelFactory;
 import shared.ActionType;
 import shared.ModelCoord;

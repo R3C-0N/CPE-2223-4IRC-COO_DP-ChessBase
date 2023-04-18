@@ -1,4 +1,4 @@
-package model.noStrategy.pieces;
+package model.pieces;
 
 import model.strategy.adapter.ChessPieceAdapter;
 import model.strategy.adapter.IChessPieceAdaptor;
@@ -172,16 +172,14 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 			movementStrategyFactory = TempestMovementStategyFactory.getInstance();
 		}
 		MovementStrategy movementStrategy = movementStrategyFactory.createMovementStrategy(chessPieceAdapter);
-		ret = movementStrategy.isMoveOk(
+
+		return movementStrategy.isMoveOk(
 				this.getX(),
 				this.getY(),
 				finalCoord.getCol() - 'a',
 				8 - finalCoord.getLigne(),
 				this.hasMoved, type
 		);
-
-
-		return ret;
 	}
 
 	@Override

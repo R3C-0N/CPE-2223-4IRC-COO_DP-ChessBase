@@ -1,6 +1,5 @@
-package model.noStrategy.pieces;
+package model.pieces;
 
-import model.strategy.movementStrategy.concreteMovementStrategy.TourMovementStrategy;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
 

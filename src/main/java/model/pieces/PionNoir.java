@@ -1,4 +1,4 @@
-package model.noStrategy.pieces;
+package model.pieces;
 
 import model.strategy.factory.concrete.ModelFactory;
 import shared.ActionType;
@@ -10,17 +10,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+
 /**
  * @author francoise.perrin - Alain BECKER
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD*
  */
-public class PionBlanc extends  AbstractPiece  {
-
+public class PionNoir extends  AbstractPiece  {
+	
 	/**
 	 * @param couleur
 	 * @param coord
 	 */
-	public PionBlanc(PieceSquareColor couleur, ModelCoord coord) {
+	public PionNoir(PieceSquareColor couleur, ModelCoord coord) {
 		super(couleur, coord);
 
 	}

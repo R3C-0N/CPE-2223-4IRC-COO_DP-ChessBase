@@ -1,20 +1,18 @@
 package model.strategy.adapter;
 
-import model.noStrategy.pieces.ChessPieceModel;
+import model.pieces.ChessPieceModel;
 
 public class ChessPieceAdapter implements IChessPieceAdaptor {
-    private final String pieceName;
-    private final Character col;
+    private final ChessPieceModel piece;
     public ChessPieceAdapter(ChessPieceModel chessPieceModel) {
-        this.pieceName = chessPieceModel.getName();
-        this.col = chessPieceModel.getCol();
+        this.piece = chessPieceModel;
     }
     
     public String getPieceName() {
-        return pieceName;
+        return this.piece.getName();
     }
     
     public int getCol() {
-        return col - 'a';
+        return this.piece.getCol() - 'a';
     }
 }
