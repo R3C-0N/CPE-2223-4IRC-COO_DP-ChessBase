@@ -3,12 +3,9 @@ package model.pieces;
 import model.strategy.adapter.ChessPieceAdapter;
 import model.strategy.adapter.IChessPieceAdaptor;
 import model.strategy.factory.astract.MovementStrategyFactory;
-import model.strategy.factory.concrete.ClassicMovementStategyFactory;
 import model.strategy.factory.concrete.ModelFactory;
-import model.strategy.factory.concrete.TempestMovementStategyFactory;
 import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy;
 import shared.ActionType;
-import shared.GameMode;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
 
@@ -160,20 +157,15 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 		return S;
 	}
 
+	private MovementStrategy getStrategy(){
+		IChessPieceAdaptor chessPieceAdapter = new ChessPieceAdapter(this);
+		MovementStrategyFactory movementStrategyFactory = ModelFactory.getMovementStrategyFactory();
+		return movementStrategyFactory.createMovementStrategy(chessPieceAdapter);
+	}
+
 	@Override
 	public boolean isAlgoMoveOk(ModelCoord finalCoord, ActionType type){
-		boolean ret = false;
-
-		IChessPieceAdaptor chessPieceAdapter = new ChessPieceAdapter(this);
-		MovementStrategyFactory movementStrategyFactory;
-		if(ModelFactory.gameMode.get() == GameMode.NORMAL){
-			movementStrategyFactory = ClassicMovementStategyFactory.getInstance();
-		} else {
-			movementStrategyFactory = TempestMovementStategyFactory.getInstance();
-		}
-		MovementStrategy movementStrategy = movementStrategyFactory.createMovementStrategy(chessPieceAdapter);
-
-		return movementStrategy.isMoveOk(
+		return this.getStrategy().isMoveOk(
 				this.getX(),
 				this.getY(),
 				finalCoord.getCol() - 'a',
@@ -183,7 +175,14 @@ public abstract class  AbstractPiece implements ChessPieceModel {
 	}
 
 	@Override
-	public abstract List<ModelCoord> getMoveItinerary(ModelCoord finalCoord);
+	public final List<ModelCoord> getMoveItinerary(ModelCoord finalCoord){
+		return this.getStrategy().getMoveItinerary(
+				this.getX(),
+				this.getY(),
+				finalCoord.getCol() - 'a',
+				8 - finalCoord.getLigne()
+		);
+	}
 
 
 	protected int getX(){

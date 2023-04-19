@@ -1,5 +1,7 @@
-package model.strategy.movementStrategy.abstractMovementStrategy;
+package model.strategy.factory.astract;
 
+
+import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +10,13 @@ import java.util.Map;
  * @author francoiseperrin
  *
  */
-public class MovementStrategyFactory {
+public class OldMovementStrategyFactory {
 
 
 	/**
 	 * private pour ne pas instancier d'objets
 	 */
-	private MovementStrategyFactory() {
+	private OldMovementStrategyFactory() {
 
 	}
 	private static Map<String, MovementStrategy> mapStrategy = new HashMap<String, MovementStrategy>();
@@ -41,7 +43,7 @@ public class MovementStrategyFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(MovementStrategyFactory.getMovementStrategy("PionNoir"));
+		System.out.println(OldMovementStrategyFactory.getMovementStrategy("PionNoir"));
 	}
 
 	

@@ -2,7 +2,10 @@ package model.strategy.movementStrategy.concreteMovementStrategy;
 
 import model.strategy.movementStrategy.abstractMovementStrategy.MovementStrategy;
 import shared.ActionType;
+import shared.ModelCoord;
 
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -30,5 +33,10 @@ public class CavalierMovementStrategy implements MovementStrategy {
 		}
 
 		return ret;
+	}
+
+	@Override
+	public List<ModelCoord> getMoveItinerary(int xInit, int yInit, int xFinal, int yFinal) {
+		return Collections.emptyList();
 	}
 }

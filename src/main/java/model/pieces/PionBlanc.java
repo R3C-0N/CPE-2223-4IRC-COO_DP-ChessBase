@@ -5,10 +5,6 @@ import shared.ActionType;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 
 /**
  * @author francoise.perrin - Alain BECKER
@@ -23,27 +19,6 @@ public class PionBlanc extends  AbstractPiece  {
 	public PionBlanc(PieceSquareColor couleur, ModelCoord coord) {
 		super(couleur, coord);
 
-	}
-
-	/* (non-Javadoc)
-	 * @see model.AbstractPiece#getMoveItinerary(int, int)
-	 * dans le cas du pion, il n'y a pas d'itinéraire
-	 * puisqu'il se déplace sur une case adjacente
-	 * sauf pour le 1er coup où il se déplace de 2 cases
-	 */
-	@Override
-	public List<ModelCoord> getMoveItinerary(ModelCoord finalCoord) {
-		int yFinal = 8 - finalCoord.getLigne();
-		List<ModelCoord> ret = Collections.emptyList(); 
-		if (this.getY()==yFinal-2 || this.getY()==yFinal+2){
-			ret = new LinkedList<ModelCoord>();
-
-			int yEtape = (this.getY() + yFinal) / 2;			// Y est la ligne entre départ et arrivée
-			ModelCoord coordEtape = new ModelCoord((char)('a'+this.getX()), (8-yEtape));	// et X est dans la même colonne
-
-			ret.add(coordEtape);
-		}
-		return ret;
 	}
 
 

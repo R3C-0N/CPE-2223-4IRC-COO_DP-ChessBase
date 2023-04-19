@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import model.pieces.ChessPieceModel;
 import model.pieces.PieceModelFactory;
+import model.strategy.factory.astract.MovementStrategyFactory;
 import shared.GameMode;
 import shared.ModelCoord;
 import shared.PieceSquareColor;
@@ -38,6 +39,15 @@ public class ModelFactory {
 		return PieceModelFactory.createPiece(pieceCouleur, type, pieceModelCoord);
 	}
 
+	public static MovementStrategyFactory getMovementStrategyFactory(){
+		MovementStrategyFactory movementStrategyFactory;
+		if(ModelFactory.gameMode.get() == GameMode.NORMAL){
+			movementStrategyFactory = ClassicMovementStategyFactory.getInstance();
+		} else {
+			movementStrategyFactory = TempestMovementStategyFactory.getInstance();
+		}
+		return movementStrategyFactory;
+	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////
 	//

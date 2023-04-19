@@ -1,6 +1,9 @@
 package model.strategy.movementStrategy.abstractMovementStrategy;
 
 import shared.ActionType;
+import shared.ModelCoord;
+
+import java.util.List;
 
 /**
  * @author francoise.perrin
@@ -21,5 +24,5 @@ public interface MovementStrategy {
 	 * des algo de déplacement spécifique de chaque pièce
 	 */
 	boolean isMoveOk(int xInit, int yInit, int xFinal, int yFinal, boolean hasMoved, ActionType actionType);
-	
+	List<ModelCoord> getMoveItinerary(int xInit, int yInit, int xFinal, int yFinal);
 }

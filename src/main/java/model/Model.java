@@ -89,7 +89,7 @@ public class Model implements ChessModel {
 	public ActionType move(ModelCoord initCoord, ModelCoord finalCoord) {
 
 		ActionType effectiveAction = null;
-		final boolean TRACE = false;	// booléen à activer si l'on veut suivre la trace d'exécution
+		final boolean TRACE = true;	// booléen à activer si l'on veut suivre la trace d'exécution
 
 		///////////////////////////////////////////////////////////////////
 		// Si le déplacement est possible, c'est à dire que :
@@ -163,7 +163,7 @@ public class Model implements ChessModel {
 	 */
 	private ActionType isMoveOK(ModelCoord initCoord, ModelCoord finalCoord) {
 
-		final boolean TRACE = false;	// booléen à activer si l'on veut suivre la trace d'exécution
+		final boolean TRACE = true;	// booléen à activer si l'on veut suivre la trace d'exécution
 		ActionType action = ActionType.UNKNOWN;
 
 		//////////////////////////////////////////////
