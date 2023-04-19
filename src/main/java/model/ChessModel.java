@@ -1,10 +1,10 @@
 package model;
 
-import java.util.List;
-
 import shared.ActionType;
 import shared.ModelCoord;
+import shared.PieceSquareColor;
 
+import java.util.List;
 
 
 /**
@@ -45,6 +45,7 @@ public interface ChessModel {
 	 */
 	public boolean isEnd();
 
-	
+	public boolean isCurrentPlayer(PieceSquareColor pieceSquareColor);
+	public void switchJoueur();
 }
 

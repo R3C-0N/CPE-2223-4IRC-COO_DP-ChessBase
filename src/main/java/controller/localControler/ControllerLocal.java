@@ -7,7 +7,6 @@ import model.ChessModel;
 import model.strategy.factory.concrete.ModelFactory;
 import shared.*;
 import view.ChessView;
-import view.GuiConfig;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,12 +29,10 @@ public class ControllerLocal extends AbstractController implements ChessControll
 	private ChessView chessGUI;
 
 	private GUICoord pieceToMoveCoord;
-	private PieceSquareColor currentPlayer;
 	private List<GUICoord> listPotentielTargetCoords ;
 
 	public ControllerLocal() {
 		super();
-		this.currentPlayer = GuiConfig.beginColor.get();
 		this.listPotentielTargetCoords = null;
 	}
 
@@ -44,7 +41,7 @@ public class ControllerLocal extends AbstractController implements ChessControll
 	public boolean actionsWhenPieceIsSelectedOnGui(PieceSquareColor pieceSquareColor, GUICoord pieceToMoveCoord) {
 		boolean ret = false;
 
-		if (this.chessGUI != null && this.chessModel !=null && pieceSquareColor.equals(this.currentPlayer)) {
+		if (this.chessGUI != null && this.chessModel !=null && this.chessModel.isCurrentPlayer(pieceSquareColor)) {
 
 			ret = true;
 
@@ -67,7 +64,7 @@ public class ControllerLocal extends AbstractController implements ChessControll
 	public boolean actionsWhenPieceIsDraggedOnGui(PieceSquareColor pieceSquareColor, GUICoord pieceToMoveCoord) {
 		boolean ret = false;
 
-		if (this.chessGUI != null && this.chessModel !=null && pieceSquareColor.equals(this.currentPlayer)) {
+		if (this.chessGUI != null && this.chessModel !=null && this.chessModel.isCurrentPlayer(pieceSquareColor)) {
 
 			ret = true;
 
@@ -105,9 +102,6 @@ public class ControllerLocal extends AbstractController implements ChessControll
 				this.chessGUI.undoMovePiece(this.pieceToMoveCoord);
 			}
 			else {
-				// switch joueur
-				this.currentPlayer = (PieceSquareColor.WHITE.equals(this.currentPlayer) ? PieceSquareColor.BLACK : PieceSquareColor.WHITE);
-
 				// Déplacement effectif sur view
 				this.chessGUI.movePiece(this.pieceToMoveCoord, targetCoord);
 
@@ -118,6 +112,9 @@ public class ControllerLocal extends AbstractController implements ChessControll
 					this.chessGUI.promotePiece(targetCoord, promotionType);
 					this.chessModel.pawnPromotion(CoordToModelCoord(targetCoord), promotionType);
 				}
+
+				// l'action est VALIDE et le tour est finis
+				this.chessModel.switchJoueur();
 			}
 			this.pieceToMoveCoord = null;
 		}

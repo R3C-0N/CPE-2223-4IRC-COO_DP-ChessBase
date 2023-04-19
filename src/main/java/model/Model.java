@@ -58,6 +58,11 @@ public class Model implements ChessModel {
 		return false;		
 	}
 
+	@Override
+	public boolean isCurrentPlayer(PieceSquareColor pieceSquareColor) {
+		return this.currentPlayer.equals(pieceSquareColor);
+	}
+
 
 	/* (non-Javadoc)
 	 * @see model.ChessGameModel#getPieceListMoveOK(int, int)
@@ -122,12 +127,10 @@ public class Model implements ChessModel {
 		// mis le roi en echec
 		//////////////////////////////////////////////////////////////////////////
 
-		this.switchJoueur();
 
 		if (this.isCheck( )){
 			if(TRACE) {System.out.println("Roi du joueur courant est en échec : ROLLBACK " 
 					+ effectiveAction);}
-			this.switchJoueur();
 			this.undoMoveCatch(initCoord, finalCoord, effectiveAction);
 			return ActionType.ILLEGAL;
 		}
@@ -150,7 +153,7 @@ public class Model implements ChessModel {
 	/**
 	 * Change le joueur courant
 	 */
-	private void switchJoueur() {
+	public void switchJoueur() {
 		PieceSquareColor temp = this.currentPlayer;
 		this.currentPlayer = this.unCurrentPlayer;
 		this.unCurrentPlayer = temp;

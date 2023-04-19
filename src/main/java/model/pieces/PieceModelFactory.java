@@ -83,8 +83,7 @@ public class PieceModelFactory {
 	}
 
 	public static ChessPieceModel createPiece(PieceSquareColor pieceCouleur, String type, ModelCoord pieceModelCoord){
-
-		ChessPieceModel piece = null;
+		ChessPieceModel piece;
 		String className = chemin + type;	// attention au chemin
 		piece = (ChessPieceModel) Introspection.newInstance(className,new Object[] {pieceCouleur, pieceModelCoord});
 		return piece;

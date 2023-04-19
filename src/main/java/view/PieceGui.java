@@ -16,7 +16,7 @@ public class PieceGui extends ImageView implements ChessPieceGui{
 	private PieceSquareColor pieceSquareColor;
 	
 	public PieceGui(PieceSquareColor pieceSquareColor, Image image ) {
-		
+		System.out.println("PieceGui.PieceGui()" + pieceSquareColor + " " + image.getHeight() + " " + image.getWidth());
 		this.pieceSquareColor = pieceSquareColor;
 		this.setImage(image);
 		this.setX(GuiConfig.height.get()/GuiConfig.nbColonne.get()/6);

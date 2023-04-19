@@ -47,8 +47,8 @@ public class Implementor implements ChessImplementor {
 	@Override
 	public boolean isPieceHere(ModelCoord coord, PieceSquareColor currentColor) {
 		boolean ret = false;
-		ChessPieceModel piece = this.findPiece(coord) ;
-		if(piece!= null && piece.hasThisColor(currentColor)){
+		ChessPieceModel piece = this.findPiece(coord);
+		if(piece != null && piece.hasThisColor(currentColor)){
 			ret = true;
 		}
 		return ret;
@@ -93,7 +93,7 @@ public class Implementor implements ChessImplementor {
 
 		if (this.pieceToMove != null ) {
 			actionType = this.pieceToMove.doMove(finalCoord)  ;
-			this.hasPromote = ActionType.PROMOTION.equals(actionType) ? true : false;
+			this.hasPromote = ActionType.PROMOTION.equals(actionType);
 		}
 		return actionType;
 	}
